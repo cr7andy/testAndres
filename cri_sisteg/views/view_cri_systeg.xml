@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Ingresos" id="ingresos_systeg" />
+    <menuitem name="CRI" id="cri_systeg" parent="ingresos_systeg"/>
+    
+    <record id="view_tree_rubros" model="ir.ui.view">
+        <field name="name">cri.rubros.tree</field>
+        <field name="model">cri.rubros</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="descripcion"/>
+                <field name="aniofiscal"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_pivot_rubros" model="ir.ui.view">
+        <field name="name">cri.rubros.tree</field>
+        <field name="model">cri.rubros</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="aniofiscal"/>
+            </pivot>
+        </field>
+    </record>
+    
+    <record id="view_graph_rubros" model="ir.ui.view">
+        <field name="name">cri.rubros.graph</field>
+        <field name="model">cri.rubros</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="codigo"/>
+                <field name="nombre"/>
+                <field name="aniofiscal"/>
+            </graph>
+        </field>
+    </record>
+    
+    <record id="view_form_rubros" model="ir.ui.view">
+        <field name="name">cri.rubros.form</field>
+        <field name="model">cri.rubros</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>                    
+                    <group>
+                        <group>
+                            <field name="codigo"/>
+                            <field name="nombre"/>                            
+                        </group>
+                        <group>
+                            <field name="descripcion"/>
+                            <field name="aniofiscal"/>
+                        </group>
+                    </group>                      
+                </sheet>                
+            </form>
+        </field>
+    </record>    
+    
+    <record id="rubros_action" model="ir.actions.act_window" >
+        <field name="name">Rubros</field>
+        <field name="res_model">cri.rubros</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                click here to create new item!
+            </p>            
+        </field>
+    </record>
+    
+        
+
+        <record model="ir.actions.act_window.view" id="action_rubros_tree_all">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_tree_rubros"/>
+            <field name="act_window_id" ref="rubros_action"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_rubros_form_all">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_form_rubros"/>
+        <field name="act_window_id" ref="rubros_action"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_rubros_pivot_all">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">pivot</field>
+            <field name="view_id" ref="view_pivot_rubros"/>
+            <field name="act_window_id" ref="rubros_action"/>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_rubros_graph_all">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="view_graph_rubros"/>
+            <field name="act_window_id" ref="rubros_action"/>
+        </record>
+
+    
+    <menuitem name="Rubros" id="rubros_systeg" parent="cri_systeg"
+              action="rubros_action"/> 
+    
+</odoo>
