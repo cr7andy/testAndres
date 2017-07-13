@@ -1,0 +1,3 @@
+./odoo-bin -w daniel -r odoodaniel --addons-path=addons,enterprise
+
+
